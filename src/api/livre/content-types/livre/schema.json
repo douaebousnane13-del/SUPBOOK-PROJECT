@@ -1,0 +1,54 @@
+{
+  "kind": "collectionType",
+  "collectionName": "livres",
+  "info": {
+    "singularName": "livre",
+    "pluralName": "livres",
+    "displayName": "Livre"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "titre": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "couverture": {
+      "type": "string"
+    },
+    "statut": {
+      "type": "enumeration",
+      "enum": [
+        "a_lire",
+        "en_cours",
+        "termine"
+      ]
+    },
+    "note": {
+      "type": "integer"
+    },
+    "avis": {
+      "type": "text"
+    },
+    "auteur": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::auteur.auteur"
+    },
+    "collections": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::collection.collection",
+      "mappedBy": "livres"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+        "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    }
+  }
+}
