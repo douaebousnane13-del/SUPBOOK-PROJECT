@@ -5,13 +5,16 @@ const API_URL = "http://localhost:1337/api";
 }
 
 
-async function request(path, options = {}) {
+   async function request(path, options = {}) {
+
   const headers = {};
+ 
   if (options.body) headers["Content-Type"] = "application/json";
   const token = getToken();
   if (token) headers["Authorization"] = "Bearer " + token;
 
   try {
+
     const response = await fetch(API_URL + path, {
       method: options.method || "GET",
          headers,
@@ -40,7 +43,7 @@ function inscrire(nom, email, motDePasse) {
   });
 }
 
-function connecter(email, motDePasse) {
+    function connecter(email, motDePasse) {
 
   return request("/auth/local", {
     method: "POST",
@@ -54,7 +57,7 @@ function getLivres() {
 
 function ajouterLivre(livre) {
   return request("/livres", {
-    method: "POST",
+     method: "POST",
     body: { data: livre },
   });
 }
@@ -63,7 +66,7 @@ function modifierLivre(documentId, donnees) {
   return request("/livres/" + documentId, {
 
     method: "PUT",
-    body: { data: donnees },
+     body: { data: donnees },
   });
 }
 
@@ -78,12 +81,12 @@ function retirerLivreCollection(livreDocumentId, collections) {
 }
 
 function getAuteurs() {
-  return request("/auteurs");
+   return request("/auteurs");
 }
 
 function ajouterAuteur(nom, prenom) {
   return request("/auteurs", {
-    method: "POST",
+     method: "POST",
     body: { data: { nom, prenom } },
   });
 }

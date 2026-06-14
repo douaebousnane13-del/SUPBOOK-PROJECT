@@ -16,10 +16,15 @@ module.exports = createCoreController('api::livre.livre', ({ strapi }) => ({
   async create(ctx) {
     const result = await super.create(ctx);
 
-    // on rattache le user apres coup j'ai pas trouvé comment l'injecter avant
+
+
+       // on rattache le user apres coup j'ai pas trouvé comment l'injecter avant
+
+
 
     if (result?.data?.documentId) {
          await strapi.documents('api::livre.livre').update({
+
         documentId: result.data.documentId,
         data: { users_permissions_user: ctx.state.user.id },
       });
@@ -27,6 +32,8 @@ module.exports = createCoreController('api::livre.livre', ({ strapi }) => ({
     return result;
   },
 
+  
+  
   async update(ctx) {
         const livre = await strapi.documents('api::livre.livre').findOne({
        documentId: ctx.params.id,
@@ -43,6 +50,7 @@ module.exports = createCoreController('api::livre.livre', ({ strapi }) => ({
           documentId: ctx.params.id,
        populate: ['users_permissions_user'],
     });
+
     if (!livre || livre.users_permissions_user?.id !== ctx.state.user.id) {
        return ctx.forbidden("Action non autorisée");
     }

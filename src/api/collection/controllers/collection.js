@@ -4,7 +4,7 @@ const { createCoreController } = require('@strapi/strapi').factories;
 
 module.exports = createCoreController('api::collection.collection', ({ strapi }) => ({
 
-  
+
 
      async find(ctx) {
         const collections = await strapi.documents('api::collection.collection').findMany({
@@ -18,8 +18,8 @@ module.exports = createCoreController('api::collection.collection', ({ strapi })
   async create(ctx) {
     const result = await super.create(ctx);
     if (result?.data?.documentId) {
-      await strapi.documents('api::collection.collection').update({
-            documentId: result.data.documentId,
+            await strapi.documents('api::collection.collection').update({
+              documentId: result.data.documentId,
 
          data: { users_permissions_user: ctx.state.user.id },
       });
@@ -29,7 +29,7 @@ module.exports = createCoreController('api::collection.collection', ({ strapi })
 
   async delete(ctx) {
     const collection = await strapi.documents('api::collection.collection').findOne({
-       documentId: ctx.params.id,
+          documentId: ctx.params.id,
 
        populate: ['users_permissions_user'],
     });

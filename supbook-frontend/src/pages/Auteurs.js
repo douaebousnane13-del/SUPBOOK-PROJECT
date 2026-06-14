@@ -10,7 +10,7 @@ function Auteurs({ allerVers }) {
   const [afficherFormulaire, setAfficherFormulaire] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [succes, setSucces] = useState("");
-  const [erreur, setErreur] = useState("");
+   const [erreur, setErreur] = useState("");
   const [chargement, setChargement] = useState(false);
 
   function afficherSucces(msg) {
@@ -37,7 +37,7 @@ function Auteurs({ allerVers }) {
   
   
   async function chargerAuteurs() {
-  setChargement(true);
+   setChargement(true);
   const data = await getAuteurs();
   if (data.data) setAuteurs(data.data);
   setChargement(false);
@@ -55,7 +55,7 @@ function Auteurs({ allerVers }) {
    afficherSucces("Auteur ajouté !");
       setNom("");
       setPrenom("");
-      setAfficherFormulaire(false);
+       setAfficherFormulaire(false);
       chargerAuteurs();
     } else {
     afficherErreur("Erreur lors de l'ajout de l'auteur");
@@ -68,7 +68,7 @@ function Auteurs({ allerVers }) {
   if (!window.confirm("Supprimer cet auteur ?")) return;
   const data = await supprimerAuteur(documentId);
   if (data.erreur) {
-    afficherErreur("Impossible de supprimer l'auteur");
+     afficherErreur("Impossible de supprimer l'auteur");
   } else {
     afficherSucces("Auteur supprimé");
     chargerAuteurs();
