@@ -159,7 +159,7 @@ if (!window.confirm("Êtes-vous sûr de vouloir supprimer ce livre ?")) return;
       statut: statutEdit,
       note: noteEdit ? parseInt(noteEdit) : null,
       avis: avisEdit,
-      auteur: auteurEditSelectionne || null,
+       auteur: auteurEditSelectionne || null,
       collections: collectionsEditSelectionnees,
     });
 
